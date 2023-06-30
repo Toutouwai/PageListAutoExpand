@@ -1,7 +1,7 @@
 <?php namespace ProcessWire;
 
 $info = array(
-	'title' => 'Page List Auto-expand',
+	'title' => 'Page List Auto Expand',
 	'summary' => 'Automatically expands the next adjacent page when moving a page in Page List.',
 	'version' => '0.1.0',
 	'author' => 'Robin Sallis',
