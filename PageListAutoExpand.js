@@ -6,10 +6,12 @@ $(document).ready(function() {
 	// Refresh jQuery UI Sortable
 	function refreshSortable() {
 		// Add list placeholder to open items so that nested sorting is possible
-		// This is based on code in ProcessPageList.js
+		// This is mostly based on code in ProcessPageList.js
 		$('.PageListItemOpen').each(function() {
-			var numChildren = parseInt($(this).attr('data-numchild'));
+			// Return early if PageListPlaceholder is already added
+			if($(this).next().hasClass('PageListPlaceholder')) return;
 			// If there are children and the next sibling doesn't contain a visible .PageList, then don't add a placeholder
+			var numChildren = parseInt($(this).attr('data-numchild'));
 			if(numChildren > 1 && $(this).next().find(".PageList:visible").length === 0) return;
 			var $ul = $('<div></div>').addClass('PageListPlaceholder').addClass('PageList');
 			$ul.append($('<div></div>').addClass('PageListItem PageListPlaceholderItem').html('&nbsp;'));
@@ -25,7 +27,7 @@ $(document).ready(function() {
 		const $next = $placeholder.next();
 		// Trigger click on next item to expand it
 		if(!$next.hasClass('PageListItemOpen')) {
-			// Temporarily remove class to prevent ProcessPageList from blocking click events
+			// Temporarily remove PageListSorting class to prevent ProcessPageList from blocking click events
 			$root.removeClass('PageListSorting');
 			$next.find('a.PageListPage').trigger('click');
 			$root.addClass('PageListSorting');
