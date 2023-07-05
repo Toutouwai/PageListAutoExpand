@@ -14,6 +14,10 @@ class PageListAutoExpand extends WireData implements Module, ConfigurableModule 
 	 * Ready
 	 */
 	public function ready() {
+		// If a "page-list-auto-expand" permission exists then the user must have that permission
+		$permission = $this->wire()->permissions->get('page-list-auto-expand');
+		if($permission->id && !$this->wire()->user->hasPermission($permission)) return;
+		
 		$config = $this->wire()->config;
 		$info = $this->wire()->modules->getModuleInfo($this->className);
 		$version = $info['version'];

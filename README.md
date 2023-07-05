@@ -14,3 +14,7 @@ As you are moving a page in Page List, if you position the yellow move placehold
 In the module config you can set the delay before the Page List item adjacent to the move placeholder will be automatically expanded.
 
 ![delay](https://github.com/Toutouwai/PageListAutoExpand/assets/1538852/deaae502-b623-4666-a8a2-9c4d3ac75369)
+
+## Restricting the module to certain roles
+
+If you want to restrict the module functionality to only certain roles then create a new permission named `page-list-auto-expand`. If that permission exists then a user's role must have that permission or the module will not have an effect in Page List.
